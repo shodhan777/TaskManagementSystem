@@ -1,14 +1,24 @@
-# Task Management System
+# TaskFlow
 
-A full-stack MERN Task Management application built using MongoDB, Express.js, React.js, and Node.js. The project allows users to securely manage their tasks through a clean and responsive interface with features like authentication, drag-and-drop Kanban board, task filtering, and dashboard analytics.
+A full-stack MERN Task Management application built using MongoDB, Express.js, React.js, and Node.js. TaskFlow allows users to securely manage their tasks through a clean and responsive interface with authentication, task analytics, progress tracking, and drag-and-drop task organization.
+
+---
+
+## Live Demo
+
+- **Frontend:** https://taskflowtms.vercel.app/
+- **Backend API:** https://taskmanagementsystem-ljtj.onrender.com
+- **GitHub Repository:** https://github.com/shodhan777/TaskManagementSystem.git
+
+> **Note:** The backend is hosted on Render's free tier. If the server has been idle, the first request may take **30–60 seconds** while it wakes up.
 
 ---
 
 ## Project Overview
 
-This project was built as part of a MERN stack internship assignment to demonstrate full-stack development skills, including backend API design, database modeling, frontend state management, and responsive UI development.
+TaskFlow was built as part of a MERN stack internship assignment to demonstrate full-stack development skills including backend API design, database modeling, authentication, frontend state management, and responsive UI/UX development.
 
-Users can register/login, create and manage tasks, organize them visually using a Kanban board, and track their progress through dashboard statistics.
+Users can register/login, manage personal tasks, organize them through a Kanban board, and monitor productivity through a dedicated progress analytics page with charts and task progress sections.
 
 ---
 
@@ -25,13 +35,17 @@ Users can register/login, create and manage tasks, organize them visually using 
 - Pagination support for task listing
 - Dashboard statistics (total, completed, pending, overdue)
 
-### Additional Enhancements
+### Advanced Features
 - Drag-and-drop Kanban board for status management
-- Toast notifications for feedback
-- Loading spinner for async actions
+- Dedicated Progress & Analytics page
+- Productivity charts and analytics dashboard
+- Separate sections for completed and in-progress tasks
+- Reopen completed tasks / mark tasks done instantly
 - Edit task modal popup
-- Modern responsive navbar
-- Clean reusable component-based architecture
+- Toast notifications for feedback
+- Loading spinner for async operations
+- Modern responsive navbar/navigation
+- Reusable component-based architecture
 
 ---
 
@@ -57,3 +71,29 @@ Users can register/login, create and manage tasks, organize them visually using 
 
 ---
 
+## Installation & Setup
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/shodhan777/TaskManagementSystem.git
+cd TaskManagementSystem
+
+
+TaskManagementSystem/
+│
+├── backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   └── utils/
+│
+├── frontend/
+│   ├── src/
+│   │   ├── api/
+│   │   ├── components/
+│   │   ├── context/
+│   │   ├── pages/
+│   │   └── styles/
