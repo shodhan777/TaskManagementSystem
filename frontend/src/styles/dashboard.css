@@ -43,10 +43,11 @@
 .dashboard-filters {
   flex: 1 1 32rem;
   min-width: min(100%, 20rem);
+  margin-right: 0;
 }
 
 .dashboard-add-button {
-  margin-left: auto;
+  margin-left: 0;
   white-space: nowrap;
 }
 
@@ -285,6 +286,7 @@
 
   .dashboard-add-button {
     margin-left: 0;
+    margin-top: -0.25rem;
   }
 
   .filter-bar {

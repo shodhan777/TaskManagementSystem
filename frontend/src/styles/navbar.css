@@ -157,6 +157,7 @@
     padding: 1rem;
     flex-wrap: wrap;
     gap: 0.75rem;
+    position: static;
   }
 
   .nav-left,
@@ -181,7 +182,12 @@
 
   .nav-right .btn,
   .nav-right .nav-link {
-    width: 100%;
+    width: auto;
     text-align: center;
+  }
+
+  .nav-right .btn {
+    padding: 0.45rem 0.85rem;
+    font-size: 0.9rem;
   }
 }
