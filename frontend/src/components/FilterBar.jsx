@@ -9,14 +9,8 @@ export default function FilterBar({
   setDateFilter,
 }) {
   return (
-    <div className="glass-card" style={{
-      display: "flex",
-      flexWrap: "wrap",
-      gap: "1rem",
-      padding: "1rem",
-      alignItems: "center"
-    }}>
-      <div className="form-group" style={{ marginBottom: 0, flex: 2, minWidth: "150px" }}>
+    <div className="glass-card filter-bar">
+      <div className="form-group filter-field filter-field-search">
         <input
           id="filter-search"
           className="input-field"
@@ -27,7 +21,7 @@ export default function FilterBar({
         />
       </div>
 
-      <div className="form-group" style={{ marginBottom: 0, minWidth: "120px" }}>
+      <div className="form-group filter-field">
         <select
           id="filter-status"
           className="input-field"
@@ -43,7 +37,7 @@ export default function FilterBar({
         </select>
       </div>
 
-      <div className="form-group" style={{ marginBottom: 0, minWidth: "120px" }}>
+      <div className="form-group filter-field">
         <select
           id="filter-priority"
           className="input-field"
@@ -58,7 +52,7 @@ export default function FilterBar({
         </select>
       </div>
 
-      <div className="form-group" style={{ marginBottom: 0, minWidth: "120px" }}>
+      <div className="form-group filter-field">
         <select
           id="filter-date"
           className="input-field"

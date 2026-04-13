@@ -19,11 +19,11 @@ export default function ProgressCharts({ stats }) {
   const hasData = pieData.length > 0;
 
   return (
-    <div style={{ marginBottom: '2rem' }}>
-      <div className="glass-card" style={{ padding: '1.5rem', minHeight: '350px', display: 'flex', flexDirection: 'column', width: '100%' }}>
-        <h3 style={{ marginBottom: '1.5rem', fontSize: '1.1rem', color: 'var(--text-main)', textAlign: 'center' }}>Status Distribution</h3>
+    <div className="progress-chart-shell">
+      <div className="glass-card progress-chart-card">
+        <h3 className="progress-chart-title">Status Distribution</h3>
         {hasData ? (
-          <div style={{ flexGrow: 1, minHeight: '260px', height: '260px' }}>
+          <div className="progress-chart-canvas">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
@@ -50,18 +50,7 @@ export default function ProgressCharts({ stats }) {
             </ResponsiveContainer>
           </div>
         ) : (
-          <div
-            style={{
-              flexGrow: 1,
-              minHeight: '260px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'var(--text-muted)',
-              textAlign: 'center',
-              padding: '1rem'
-            }}
-          >
+          <div className="progress-chart-empty">
             No task data available yet.
           </div>
         )}

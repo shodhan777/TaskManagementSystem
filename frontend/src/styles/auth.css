@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   flex: 1;
-  min-height: calc(100vh - 70px); /* minus navbar approx */
+  min-height: calc(100vh - 70px);
   padding: 2rem;
 }
 
@@ -26,6 +26,11 @@
   gap: 1rem;
 }
 
+.auth-submit-btn {
+  width: 100%;
+  margin-top: 1rem;
+}
+
 .auth-footer {
   margin-top: 2rem;
   font-size: 0.9rem;
@@ -35,4 +40,26 @@
 .auth-footer a {
   font-weight: 600;
   margin-left: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .auth-container {
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .auth-card {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 1.25rem;
+  }
+
+  .auth-card h2 {
+    font-size: 1.5rem;
+  }
 }

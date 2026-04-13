@@ -112,14 +112,14 @@ export default function Dashboard() {
   return (
     <main className="dashboard">
       <header className="dashboard-header">
-        <div>
+        <div className="dashboard-heading">
           <h1>Task Dashboard</h1>
-          <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", marginTop: "0.25rem" }}>
+          <p className="dashboard-subtitle">
             Drag and drop cards below to update their status.
           </p>
         </div>
-        
-        <div style={{ flexGrow: 1, marginLeft: "2rem" }}>
+
+        <div className="dashboard-filters">
           <FilterBar
             search={search}
             setSearch={setSearch}
@@ -132,16 +132,15 @@ export default function Dashboard() {
           />
         </div>
 
-        <button 
-          className="btn btn-primary" 
-          style={{ marginLeft: "1rem", whiteSpace: "nowrap" }}
+        <button
+          className="btn btn-primary dashboard-add-button"
           onClick={() => setIsAddingTask(true)}
         >
           + Add Task
         </button>
       </header>
-      
-      <section style={{ marginBottom: "1.5rem" }}>
+
+      <section className="dashboard-stats">
         <StatsCards stats={stats} vertical={false} />
       </section>
 
@@ -161,7 +160,7 @@ export default function Dashboard() {
         <div className="modal-overlay" onClick={() => setIsAddingTask(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <TaskForm onAdd={addTask} />
-            <div className="modal-actions" style={{ marginTop: "0", display: "flex", justifyContent: "flex-end" }}>
+            <div className="modal-actions modal-actions-compact">
               <button className="btn btn-secondary" onClick={() => setIsAddingTask(false)}>Cancel</button>
             </div>
           </div>
@@ -176,7 +175,7 @@ export default function Dashboard() {
         />
       )}
 
-      <footer className="dashboard-footer" style={{ textAlign: "center", paddingTop: "1rem", color: "var(--text-muted)", fontSize: "0.85rem", borderTop: "1px solid var(--border-color)" }}>
+      <footer className="dashboard-footer">
         <p>&copy; {new Date().getFullYear()} Task Flow. All rights reserved.</p>
       </footer>
     </main>

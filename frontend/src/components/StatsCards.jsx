@@ -7,23 +7,19 @@ export default function StatsCards({ stats, vertical }) {
   ];
 
   return (
-    <div style={{
-      display: vertical ? "flex" : "grid",
-      flexDirection: vertical ? "column" : "row",
-      gridTemplateColumns: vertical ? "none" : "repeat(auto-fit, minmax(150px, 1fr))",
-      gap: "1rem",
-      marginBottom: "0"
-    }}>
+    <div
+      className={vertical ? "stats-grid stats-grid-vertical" : "stats-grid"}
+    >
       {cards.map(card => (
-        <div key={card.label} className="glass-card" style={{
-          padding: "1rem",
-          textAlign: "center",
-          borderTop: `4px solid ${card.color}`
-        }}>
-          <h4 style={{ color: "var(--text-muted)", fontSize: "0.85rem", textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.5rem" }}>
+        <div
+          key={card.label}
+          className="glass-card stats-card"
+          style={{ borderTop: `4px solid ${card.color}` }}
+        >
+          <h4 className="stats-card-label">
             {card.label}
           </h4>
-          <p style={{ fontSize: "1.75rem", fontWeight: "700", color: "var(--text-main)", lineHeight: 1, margin: 0 }}>
+          <p className="stats-card-value">
             {card.value}
           </p>
         </div>

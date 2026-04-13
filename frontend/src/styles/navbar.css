@@ -27,6 +27,7 @@
 .nav-left,
 .nav-right {
   flex: 1;
+  min-width: 0;
 }
 
 .nav-left {
@@ -41,6 +42,7 @@
 .nav-right {
   justify-content: flex-end;
   gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .logo {
@@ -167,6 +169,7 @@
   .nav-main {
     width: 100%;
     justify-content: center;
+    flex-wrap: wrap;
     background: transparent;
     border: none;
     padding: 0.25rem 0;
@@ -174,5 +177,11 @@
 
   .user-greeting {
     display: none;
+  }
+
+  .nav-right .btn,
+  .nav-right .nav-link {
+    width: 100%;
+    text-align: center;
   }
 }

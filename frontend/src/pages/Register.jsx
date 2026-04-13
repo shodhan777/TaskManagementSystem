@@ -76,7 +76,7 @@ export default function Register() {
             />
           </div>
 
-          <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem' }}>
+          <button type="submit" className="btn btn-primary auth-submit-btn">
             Register
           </button>
         </form>

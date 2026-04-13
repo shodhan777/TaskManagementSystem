@@ -35,37 +35,24 @@ export default function KanbanBoard({
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
-      <div style={{
-        display: "grid",
-        gridTemplateColumns: `repeat(${colCount}, minmax(280px, 1fr))`,
-        gap: "1rem",
-        overflowX: "auto",
-        paddingBottom: "1rem"
-      }}>
+      <div
+        className="kanban-grid"
+        style={{
+          gridTemplateColumns: `repeat(${colCount}, minmax(280px, 1fr))`,
+        }}
+      >
         {Object.entries(columns).map(([status, tasks]) => (
           <Droppable droppableId={status} key={status}>
             {(provided) => (
               <div
                 ref={provided.innerRef}
                 {...provided.droppableProps}
-                style={{
-                  background: "var(--card-bg)",
-                  border: "1px solid var(--border-color)",
-                  padding: "1rem",
-                  borderRadius: "16px",
-                  minHeight: "300px",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "1rem"
-                }}
+                className="kanban-column"
               >
-                <div style={{
-                  padding: "0.5rem 1rem",
-                  background: status === "Todo" ? "var(--todo-color)" : status === "In Progress" ? "var(--inprogress-color)" : status === "Overdue" ? "var(--danger-color, #ff4c4c)" : "var(--done-color)",
-                  borderRadius: "8px",
-                  marginBottom: "0.5rem"
-                }}>
-                  <h3 style={{ fontSize: "1rem", color: "var(--text-main)", margin: 0 }}>{status}</h3>
+                <div
+                  className={`kanban-column-header kanban-column-${status.replace(" ", "-").toLowerCase()}`}
+                >
+                  <h3 className="kanban-column-title">{status}</h3>
                 </div>
 
                 {tasks.map((task, index) => (
