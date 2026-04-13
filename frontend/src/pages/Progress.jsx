@@ -92,7 +92,7 @@ export default function Progress() {
   };
 
   return (
-    <main className="dashboard progress-page" style={{ marginTop: "80px", minHeight: "calc(100vh - 80px)" }}>
+    <main className="dashboard progress-page" style={{ marginTop: "10px", minHeight: "calc(100vh - 80px)" }}>
       <header className="dashboard-header" style={{ flexDirection: "column", alignItems: "flex-start" }}>
         <h1>Progress & Analytics</h1>
         <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", marginTop: "0.25rem" }}>
@@ -115,19 +115,19 @@ export default function Progress() {
           }}>
             <h3 style={{ fontSize: "1.2rem", color: "var(--text-main)", margin: 0 }}>In Progress</h3>
           </div>
-          
+
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             {inProgressTasks.length === 0 ? (
               <p style={{ color: "var(--text-muted)" }}>No tasks in progress.</p>
             ) : (
               inProgressTasks.map((task) => (
                 <div key={task._id} style={{ position: "relative" }}>
-                  <TaskCard 
-                    task={task} 
-                    onEdit={setEditingTask} 
-                    onDelete={deleteTask} 
+                  <TaskCard
+                    task={task}
+                    onEdit={setEditingTask}
+                    onDelete={deleteTask}
                   />
-                  <button 
+                  <button
                     onClick={() => markAsDone(task._id)}
                     className="btn btn-primary"
                     style={{ position: "absolute", top: "1rem", right: "1rem", padding: "0.3rem 0.6rem", fontSize: "0.75rem" }}
@@ -157,12 +157,12 @@ export default function Progress() {
             ) : (
               completedTasks.map((task) => (
                 <div key={task._id} style={{ position: "relative" }}>
-                  <TaskCard 
-                    task={task} 
-                    onEdit={setEditingTask} 
-                    onDelete={deleteTask} 
+                  <TaskCard
+                    task={task}
+                    onEdit={setEditingTask}
+                    onDelete={deleteTask}
                   />
-                  <button 
+                  <button
                     onClick={() => markAsInProgress(task._id)}
                     className="btn btn-secondary"
                     style={{ position: "absolute", top: "1rem", right: "1rem", padding: "0.3rem 0.6rem", fontSize: "0.75rem" }}
