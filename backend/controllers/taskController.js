@@ -114,6 +114,16 @@ const getTaskStats = async (req, res) => {
           new Date(t.dueDate) < new Date() &&
           t.status !== "Done"
       ).length,
+      completionHistory: Array.from({ length: 7 }, (_, i) => {
+        const d = new Date();
+        d.setDate(d.getDate() - (6 - i));
+        const dateStr = d.toISOString().split("T")[0];
+        const count = tasks.filter(t => 
+          t.status === "Done" && 
+          new Date(t.updatedAt).toISOString().split("T")[0] === dateStr
+        ).length;
+        return { date: dateStr, count };
+      })
     };
 
     res.status(200).json(stats);

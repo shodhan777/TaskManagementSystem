@@ -5,6 +5,7 @@ import API from "../api/axios";
 import TaskCard from "../components/TaskCard";
 import toast from "react-hot-toast";
 import EditTaskModal from "../components/EditTaskModal";
+import ProgressCharts from "../components/ProgressCharts";
 import "../styles/dashboard.css"; // Reuse dashboard base styles
 
 export default function Progress() {
@@ -13,12 +14,25 @@ export default function Progress() {
 
   const [inProgressTasks, setInProgressTasks] = useState([]);
   const [completedTasks, setCompletedTasks] = useState([]);
+  const [stats, setStats] = useState({});
   const [editingTask, setEditingTask] = useState(null);
 
   useEffect(() => {
     if (!user) navigate("/login");
-    else fetchTasks();
+    else {
+      fetchTasks();
+      fetchStats();
+    }
   }, [user]);
+
+  const fetchStats = async () => {
+    try {
+      const { data } = await API.get("/tasks/stats");
+      setStats(data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const fetchTasks = async () => {
     try {
@@ -38,6 +52,7 @@ export default function Progress() {
     try {
       await API.put(`/tasks/${id}`, { status: "Done" });
       fetchTasks();
+      fetchStats();
       toast.success("Task marked as Done!");
     } catch (error) {
       toast.error("Failed to update status");
@@ -48,6 +63,7 @@ export default function Progress() {
     try {
       await API.put(`/tasks/${id}`, { status: "In Progress" });
       fetchTasks();
+      fetchStats();
       toast.success("Task moved to In Progress!");
     } catch (error) {
       toast.error("Failed to update status");
@@ -78,13 +94,17 @@ export default function Progress() {
   return (
     <main className="dashboard" style={{ marginTop: "80px", minHeight: "calc(100vh - 80px)" }}>
       <header className="dashboard-header" style={{ flexDirection: "column", alignItems: "flex-start" }}>
-        <h1>Progress & Completed</h1>
+        <h1>Progress & Analytics</h1>
         <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", marginTop: "0.25rem" }}>
-          Track and manage your ongoing and finished tasks directly.
+          Visual insights into your productivity and task history.
         </p>
       </header>
 
-      <div className="dashboard-content" style={{ marginTop: "2rem" }}>
+      <section style={{ marginTop: "2rem" }}>
+        <ProgressCharts stats={stats} />
+      </section>
+
+      <div className="dashboard-content" style={{ marginTop: "1rem" }}>
         {/* In Progress Section */}
         <section className="dashboard-main" style={{ flex: 1, minWidth: "300px" }}>
           <div style={{
