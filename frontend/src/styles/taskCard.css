@@ -43,6 +43,7 @@
 .status-Todo { background-color: var(--todo-color); color: var(--text-main); }
 .status-InProgress { background-color: var(--inprogress-color); color: var(--text-main); }
 .status-Done { background-color: var(--done-color); color: var(--text-main); }
+.status-Overdue { background-color: var(--danger-color, #ff4c4c); color: #fff; }
 
 .priority-low { border: 1px solid #4ade80; color: #16a34a; }
 .priority-medium { border: 1px solid #facc15; color: #ca8a04; }

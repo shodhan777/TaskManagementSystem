@@ -5,6 +5,8 @@ export default function FilterBar({
   setStatus,
   priority,
   setPriority,
+  dateFilter,
+  setDateFilter,
 }) {
   return (
     <div className="glass-card" style={{
@@ -37,6 +39,7 @@ export default function FilterBar({
           <option value="Todo">Todo</option>
           <option value="In Progress">In Progress</option>
           <option value="Done">Done</option>
+          <option value="Overdue">Overdue</option>
         </select>
       </div>
 
@@ -52,6 +55,19 @@ export default function FilterBar({
           <option value="Low">Low</option>
           <option value="Medium">Medium</option>
           <option value="High">High</option>
+        </select>
+      </div>
+
+      <div className="form-group" style={{ marginBottom: 0, minWidth: "150px" }}>
+        <select
+          id="filter-date"
+          className="input-field"
+          style={{ padding: "0.5rem 1rem", paddingRight: "2.5rem" }}
+          value={dateFilter}
+          onChange={(e) => setDateFilter(e.target.value)}
+        >
+          <option value="">All Dates</option>
+          <option value="today">Today</option>
         </select>
       </div>
     </div>

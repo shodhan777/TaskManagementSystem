@@ -14,6 +14,11 @@ export default function TaskCard({
       </p>
 
       <div className="task-badges">
+        {task.dueDate && (
+          <span className="badge" style={{ backgroundColor: "#334155", color: "#fff" }}>
+            Due: {new Date(task.dueDate).toLocaleDateString()}
+          </span>
+        )}
         <span className={`badge status-${task.status.replace(" ", "")}`}>
           {task.status}
         </span>

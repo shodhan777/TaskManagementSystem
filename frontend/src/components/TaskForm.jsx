@@ -6,6 +6,7 @@ export default function TaskForm({ onAdd }) {
     description: "",
     priority: "Medium",
     status: "Todo",
+    dueDate: "",
   });
 
   const handleSubmit = (e) => {
@@ -17,6 +18,7 @@ export default function TaskForm({ onAdd }) {
       description: "",
       priority: "Medium",
       status: "Todo",
+      dueDate: "",
     });
   };
 
@@ -67,6 +69,19 @@ export default function TaskForm({ onAdd }) {
             <option>Medium</option>
             <option>High</option>
           </select>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="task-dueDate">Due Date</label>
+          <input
+            type="date"
+            id="task-dueDate"
+            className="input-field"
+            value={form.dueDate ? form.dueDate.substring(0, 10) : ""}
+            onChange={(e) =>
+              setForm({ ...form, dueDate: e.target.value })
+            }
+          />
         </div>
 
         <div className="form-group">

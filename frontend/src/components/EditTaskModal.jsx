@@ -38,6 +38,19 @@ export default function EditTaskModal({ task, onSave, onClose }) {
         </div>
 
         <div className="form-group">
+          <label htmlFor="edit-dueDate">Due Date</label>
+          <input
+            type="date"
+            id="edit-dueDate"
+            className="input-field"
+            value={form.dueDate ? form.dueDate.substring(0, 10) : ""}
+            onChange={(e) =>
+              setForm({ ...form, dueDate: e.target.value })
+            }
+          />
+        </div>
+
+        <div className="form-group">
           <label htmlFor="edit-status">Status</label>
           <select
             id="edit-status"

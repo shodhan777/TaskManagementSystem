@@ -38,6 +38,7 @@ const getTasks = async (req, res) => {
       search = "",
       status,
       priority,
+      dateFilter,
       page = 1,
       limit = 10,
     } = req.query;
@@ -55,6 +56,14 @@ const getTasks = async (req, res) => {
 
     if (status) query.status = status;
     if (priority) query.priority = priority;
+    
+    if (dateFilter === "today") {
+      const todayStart = new Date();
+      todayStart.setHours(0, 0, 0, 0);
+      const todayEnd = new Date();
+      todayEnd.setHours(23, 59, 59, 999);
+      query.dueDate = { $gte: todayStart, $lte: todayEnd };
+    }
 
     const total = await Task.countDocuments(query);
 
@@ -62,6 +71,14 @@ const getTasks = async (req, res) => {
       .sort({ createdAt: -1 })
       .skip((page - 1) * Number(limit))
       .limit(Number(limit));
+
+    const now = new Date();
+    for (let task of tasks) {
+      if (task.dueDate && new Date(task.dueDate) < now && task.status !== "Done" && task.status !== "Overdue") {
+        task.status = "Overdue";
+        await task.save();
+      }
+    }
 
     res.status(200).json({
       tasks,

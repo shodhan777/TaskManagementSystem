@@ -16,6 +16,7 @@ export default function KanbanBoard({
     Todo: tasks.filter(t => t.status === "Todo"),
     "In Progress": tasks.filter(t => t.status === "In Progress"),
     Done: tasks.filter(t => t.status === "Done"),
+    Overdue: tasks.filter(t => t.status === "Overdue"),
   };
 
   const columns = statusFilter ? { [statusFilter]: allColumns[statusFilter] } : allColumns;
@@ -60,7 +61,7 @@ export default function KanbanBoard({
               >
                 <div style={{
                   padding: "0.5rem 1rem",
-                  background: status === "Todo" ? "var(--todo-color)" : status === "In Progress" ? "var(--inprogress-color)" : "var(--done-color)",
+                  background: status === "Todo" ? "var(--todo-color)" : status === "In Progress" ? "var(--inprogress-color)" : status === "Overdue" ? "var(--danger-color, #ff4c4c)" : "var(--done-color)",
                   borderRadius: "8px",
                   marginBottom: "0.5rem"
                 }}>

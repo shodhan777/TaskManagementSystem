@@ -23,6 +23,8 @@ export default function Dashboard() {
   const [search, setSearch] = useState("");
   const [status, setStatus] = useState("");
   const [priority, setPriority] = useState("");
+  const [dateFilter, setDateFilter] = useState("");
+  const [hasShownReminder, setHasShownReminder] = useState(false);
 
   useEffect(() => {
     if (!user) navigate("/login");
@@ -30,12 +32,21 @@ export default function Dashboard() {
       fetchTasks();
       fetchStats();
     }
-  }, [user, search, status, priority]);
+  }, [user, search, status, priority, dateFilter]);
+
+  useEffect(() => {
+    if (stats.overdue !== undefined && !hasShownReminder) {
+      if (stats.overdue > 0) {
+        toast(`You have ${stats.overdue} overdue tasks!`, { icon: '⚠️', style: { border: '1px solid #ff4c4c' } });
+      }
+      setHasShownReminder(true);
+    }
+  }, [stats, hasShownReminder]);
 
   const fetchTasks = async () => {
     try {
       const { data } = await API.get(
-        `/tasks?search=${search}&status=${status}&priority=${priority}`
+        `/tasks?search=${search}&status=${status}&priority=${priority}&dateFilter=${dateFilter}`
       );
       setTasks(data.tasks);
     } catch (error) {
@@ -116,6 +127,8 @@ export default function Dashboard() {
             setStatus={setStatus}
             priority={priority}
             setPriority={setPriority}
+            dateFilter={dateFilter}
+            setDateFilter={setDateFilter}
           />
         </div>
 
