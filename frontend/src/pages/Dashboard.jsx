@@ -8,8 +8,9 @@ import TaskCard from "../components/TaskCard";
 import StatsCards from "../components/StatsCards";
 import FilterBar from "../components/FilterBar";
 import EditTaskModal from "../components/EditTaskModal";
-
+import toast from "react-hot-toast";
 import "../styles/dashboard.css";
+import KanbanBoard from "../components/KanbanBoard";
 
 export default function Dashboard() {
   const { user, logout } = useAuth();
@@ -47,12 +48,14 @@ export default function Dashboard() {
     await API.post("/tasks", taskData);
     fetchTasks();
     fetchStats();
+    toast.success("Task Added");
   };
 
   const deleteTask = async (id) => {
     await API.delete(`/tasks/${id}`);
     fetchTasks();
     fetchStats();
+    toast.success("Task deleted");
   };
 
   const saveEdit = async (updatedTask) => {
@@ -60,7 +63,14 @@ export default function Dashboard() {
     setEditingTask(null);
     fetchTasks();
     fetchStats();
+    toast.success("task Updated");
   };
+
+  const handleStatusChange = async (id, status) => {
+  await API.put(`/tasks/${id}`, { status });
+  fetchTasks();
+  fetchStats();
+};
 
   return (
     <div className="dashboard">
@@ -73,6 +83,10 @@ export default function Dashboard() {
 
       <StatsCards stats={stats} />
 
+      <KanbanBoard
+     tasks={tasks}
+   onStatusChange={handleStatusChange}
+    />
       <TaskForm onAdd={addTask} />
 
       <FilterBar

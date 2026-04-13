@@ -3,6 +3,7 @@ import API from "../api/axios";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../styles/auth.css";
+import toast from "react-hot-toast";
 
 export default function Login() {
   const [form, setForm] = useState({
@@ -23,9 +24,10 @@ export default function Login() {
     try {
       const { data } = await API.post("/auth/login", form);
       login(data);
+      toast.success("Login successful");
       navigate("/");
     } catch (error) {
-      alert(error.response?.data?.message || "Error");
+      toast.error(error.response?.data?.message || "Error");
     }
   };
 
