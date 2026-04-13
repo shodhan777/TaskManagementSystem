@@ -3,18 +3,25 @@ import {
   Droppable,
   Draggable,
 } from "@hello-pangea/dnd";
+import TaskCard from "./TaskCard";
 
 export default function KanbanBoard({
   tasks,
+  statusFilter,
   onStatusChange,
+  onEdit,
+  onDelete
 }) {
-  const columns = {
+  let allColumns = {
     Todo: tasks.filter(t => t.status === "Todo"),
-    "In Progress": tasks.filter(
-      t => t.status === "In Progress"
-    ),
+    "In Progress": tasks.filter(t => t.status === "In Progress"),
     Done: tasks.filter(t => t.status === "Done"),
   };
+
+  const columns = statusFilter ? { [statusFilter]: allColumns[statusFilter] } : allColumns;
+
+  // Set the grid template columns to either 1, 2, or 3 based on columns mapping.
+  const colCount = Object.keys(columns).length;
 
   const handleDragEnd = (result) => {
     if (!result.destination) return;
@@ -29,9 +36,10 @@ export default function KanbanBoard({
     <DragDropContext onDragEnd={handleDragEnd}>
       <div style={{
         display: "grid",
-        gridTemplateColumns: "repeat(3,1fr)",
-        gap: "20px",
-        marginTop: "30px"
+        gridTemplateColumns: `repeat(${colCount}, minmax(300px, 1fr))`,
+        gap: "1.5rem",
+        overflowX: "auto",
+        paddingBottom: "1rem"
       }}>
         {Object.entries(columns).map(([status, tasks]) => (
           <Droppable droppableId={status} key={status}>
@@ -40,13 +48,24 @@ export default function KanbanBoard({
                 ref={provided.innerRef}
                 {...provided.droppableProps}
                 style={{
-                  background: "#eef2ff",
-                  padding: "16px",
-                  borderRadius: "12px",
-                  minHeight: "300px"
+                  background: "var(--card-bg)",
+                  border: "1px solid var(--border-color)",
+                  padding: "1rem",
+                  borderRadius: "16px",
+                  minHeight: "300px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "1rem"
                 }}
               >
-                <h3>{status}</h3>
+                <div style={{
+                  padding: "0.5rem 1rem",
+                  background: status === "Todo" ? "var(--todo-color)" : status === "In Progress" ? "var(--inprogress-color)" : "var(--done-color)",
+                  borderRadius: "8px",
+                  marginBottom: "0.5rem"
+                }}>
+                  <h3 style={{ fontSize: "1rem", color: "var(--text-main)", margin: 0 }}>{status}</h3>
+                </div>
 
                 {tasks.map((task, index) => (
                   <Draggable
@@ -54,20 +73,23 @@ export default function KanbanBoard({
                     index={index}
                     key={task._id}
                   >
-                    {(provided) => (
+                    {(provided, snapshot) => (
                       <div
                         ref={provided.innerRef}
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         style={{
-                          background: "white",
-                          padding: "14px",
-                          marginBottom: "10px",
-                          borderRadius: "10px",
+                          opacity: snapshot.isDragging ? 0.8 : 1,
+                          transform: snapshot.isDragging ? "scale(1.02)" : "scale(1)",
+                          transition: "transform 0.1s",
                           ...provided.draggableProps.style
                         }}
                       >
-                        {task.title}
+                        <TaskCard 
+                          task={task} 
+                          onEdit={onEdit} 
+                          onDelete={onDelete} 
+                        />
                       </div>
                     )}
                   </Draggable>

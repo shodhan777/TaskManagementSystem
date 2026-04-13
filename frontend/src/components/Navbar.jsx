@@ -1,25 +1,26 @@
 import { Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "../styles/navbar.css";
+
 export default function Navbar() {
   const { user, logout } = useAuth();
 
   return (
-    <nav className="navbar">
+    <nav className="navbar" aria-label="Main Navigation">
       <Link to="/" className="logo">
-        TaskFlow
+        <span style={{ color: "var(--primary-color)" }}>Task</span>Flow
       </Link>
 
       <div className="nav-links">
         {!user ? (
           <>
-            <Link to="/login">Login</Link>
-            <Link to="/register">Register</Link>
+            <Link to="/login" className="nav-link">Login</Link>
+            <Link to="/register" className="btn btn-primary" style={{ padding: "0.5rem 1rem" }}>Register</Link>
           </>
         ) : (
           <>
-            <span>Hello, {user.name}</span>
-            <button onClick={logout}>Logout</button>
+            <span className="user-greeting">Hello, <strong>{user.name}</strong></span>
+            <button onClick={logout} className="btn btn-secondary" style={{ padding: "0.5rem 1rem" }}>Logout</button>
           </>
         )}
       </div>

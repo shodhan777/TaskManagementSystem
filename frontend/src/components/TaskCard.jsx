@@ -6,31 +6,32 @@ export default function TaskCard({
   onEdit,
 }) {
   return (
-    <div className="task-card">
+    <div className="task-card glass-card">
       <h3 className="task-title">{task.title}</h3>
 
       <p className="task-description">
         {task.description}
       </p>
 
-      <p className="task-meta">
-        <strong>Status:</strong> {task.status}
-      </p>
-
-      <p className="task-meta">
-        <strong>Priority:</strong> {task.priority}
-      </p>
+      <div className="task-badges">
+        <span className={`badge status-${task.status.replace(" ", "")}`}>
+          {task.status}
+        </span>
+        <span className={`badge priority-${task.priority.toLowerCase()}`}>
+          {task.priority}
+        </span>
+      </div>
 
       <div className="task-actions">
         <button
-          className="edit-btn"
+          className="btn btn-secondary edit-btn"
           onClick={() => onEdit(task)}
         >
           Edit
         </button>
 
         <button
-          className="delete-btn"
+          className="btn btn-danger delete-btn"
           onClick={() => onDelete(task._id)}
         >
           Delete

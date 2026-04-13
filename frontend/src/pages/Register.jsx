@@ -34,34 +34,51 @@ export default function Register() {
 
   return (
     <div className="auth-container">
-      <div className="auth-card">
+      <div className="auth-card glass-card">
         <h2>Create Account</h2>
 
         <form className="auth-form" onSubmit={handleSubmit}>
-          <input
-            name="name"
-            placeholder="Full Name"
-            onChange={handleChange}
-            required
-          />
+          <div className="form-group">
+            <label htmlFor="name">Full Name</label>
+            <input
+              id="name"
+              name="name"
+              className="input-field"
+              placeholder="Enter your full name"
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          <input
-            name="email"
-            type="email"
-            placeholder="Email Address"
-            onChange={handleChange}
-            required
-          />
+          <div className="form-group">
+            <label htmlFor="email">Email Address</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              className="input-field"
+              placeholder="Enter your email"
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            onChange={handleChange}
-            required
-          />
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              id="password"
+              name="password"
+              type="password"
+              className="input-field"
+              placeholder="Create a password"
+              onChange={handleChange}
+              required
+            />
+          </div>
 
-          <button type="submit">Register</button>
+          <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1rem' }}>
+            Register
+          </button>
         </form>
 
         <div className="auth-footer">

@@ -1,27 +1,62 @@
 .task-card {
-  background: white;
-  padding: 18px;
-  border-radius: 14px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-  transition: 0.2s;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .task-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
+  box-shadow: var(--card-hover-shadow);
 }
+
+.task-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  margin-bottom: 0.25rem;
+  word-wrap: break-word;
+}
+
+.task-description {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+  flex-grow: 1;
+  word-wrap: break-word;
+}
+
+.task-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.badge {
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
+.status-Todo { background-color: var(--todo-color); color: var(--text-main); }
+.status-InProgress { background-color: var(--inprogress-color); color: var(--text-main); }
+.status-Done { background-color: var(--done-color); color: var(--text-main); }
+
+.priority-low { border: 1px solid #4ade80; color: #16a34a; }
+.priority-medium { border: 1px solid #facc15; color: #ca8a04; }
+.priority-high { border: 1px solid #f87171; color: #dc2626; }
 
 .task-actions {
   display: flex;
-  gap: 10px;
-  margin-top: 14px;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.75rem;
 }
 
-.edit-btn {
-  background: #4f46e5;
-  color: white;
-}
-
-.delete-btn {
-  background: #ef4444;
-  color: white;
+.task-actions .btn {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.75rem;
 }

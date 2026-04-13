@@ -9,58 +9,56 @@ export default function EditTaskModal({ task, onSave, onClose }) {
   };
 
   return (
-    <div style={{
-      position: "fixed",
-      inset: 0,
-      background: "rgba(0,0,0,0.4)",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center"
-    }}>
-      <form onSubmit={handleSubmit} style={{
-        background: "white",
-        padding: "24px",
-        borderRadius: "12px",
-        width: "90%",
-        maxWidth: "400px"
-      }}>
-        <h3>Edit Task</h3>
+    <div className="modal-overlay">
+      <form onSubmit={handleSubmit} className="modal-content">
+        <h3 style={{ marginBottom: "1.5rem", color: "var(--primary-color)" }}>Edit Task</h3>
 
-        <input
-          value={form.title}
-          onChange={(e)=>
-            setForm({...form,title:e.target.value})
-          }
-        />
+        <div className="form-group">
+          <label htmlFor="edit-title">Task Title</label>
+          <input
+            id="edit-title"
+            className="input-field"
+            value={form.title}
+            onChange={(e)=>
+              setForm({...form,title:e.target.value})
+            }
+          />
+        </div>
 
-        <br /><br />
+        <div className="form-group">
+          <label htmlFor="edit-desc">Description</label>
+          <textarea
+            id="edit-desc"
+            className="input-field"
+            value={form.description}
+            onChange={(e)=>
+              setForm({...form,description:e.target.value})
+            }
+          />
+        </div>
 
-        <textarea
-          value={form.description}
-          onChange={(e)=>
-            setForm({...form,description:e.target.value})
-          }
-        />
+        <div className="form-group">
+          <label htmlFor="edit-status">Status</label>
+          <select
+            id="edit-status"
+            className="input-field"
+            value={form.status}
+            onChange={(e)=>
+              setForm({...form,status:e.target.value})
+            }
+          >
+            <option>Todo</option>
+            <option>In Progress</option>
+            <option>Done</option>
+          </select>
+        </div>
 
-        <br /><br />
-
-        <select
-          value={form.status}
-          onChange={(e)=>
-            setForm({...form,status:e.target.value})
-          }
-        >
-          <option>Todo</option>
-          <option>In Progress</option>
-          <option>Done</option>
-        </select>
-
-        <br /><br />
-
-        <button type="submit">Save</button>
-        <button type="button" onClick={onClose}>
-          Cancel
-        </button>
+        <div className="modal-actions">
+          <button type="button" className="btn btn-secondary" onClick={onClose}>
+            Cancel
+          </button>
+          <button type="submit" className="btn btn-primary">Save Changes</button>
+        </div>
       </form>
     </div>
   );

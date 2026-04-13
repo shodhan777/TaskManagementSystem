@@ -21,59 +21,74 @@ export default function TaskForm({ onAdd }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} style={{
-      background: "white",
-      padding: "20px",
-      borderRadius: "12px"
-    }}>
-      <h3>Add Task</h3>
+    <form onSubmit={handleSubmit} className="glass-card" style={{ padding: "1.5rem" }}>
+      <h3 style={{ marginBottom: "1.5rem", color: "var(--primary-color)" }}>Add New Task</h3>
+      
+      <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+        <div className="form-group">
+          <label htmlFor="task-title">Task Title</label>
+          <input
+            id="task-title"
+            className="input-field"
+            placeholder="What needs to be done?"
+            value={form.title}
+            onChange={(e) =>
+              setForm({ ...form, title: e.target.value })
+            }
+            required
+          />
+        </div>
 
-      <input
-        placeholder="Task Title"
-        value={form.title}
-        onChange={(e) =>
-          setForm({ ...form, title: e.target.value })
-        }
-        required
-      />
+        <div className="form-group">
+          <label htmlFor="task-desc">Description</label>
+          <textarea
+            id="task-desc"
+            className="input-field"
+            style={{ minHeight: "80px", resize: "none" }}
+            placeholder="Add details..."
+            value={form.description}
+            onChange={(e) =>
+              setForm({ ...form, description: e.target.value })
+            }
+          />
+        </div>
 
-      <br /><br />
+        <div className="form-group">
+          <label htmlFor="task-priority">Priority</label>
+          <select
+            id="task-priority"
+            className="input-field"
+            value={form.priority}
+            onChange={(e) =>
+              setForm({ ...form, priority: e.target.value })
+            }
+          >
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+          </select>
+        </div>
 
-      <textarea
-        placeholder="Description"
-        value={form.description}
-        onChange={(e) =>
-          setForm({ ...form, description: e.target.value })
-        }
-      />
+        <div className="form-group">
+          <label htmlFor="task-status">Status</label>
+          <select
+            id="task-status"
+            className="input-field"
+            value={form.status}
+            onChange={(e) =>
+              setForm({ ...form, status: e.target.value })
+            }
+          >
+            <option>Todo</option>
+            <option>In Progress</option>
+            <option>Done</option>
+          </select>
+        </div>
+      </div>
 
-      <br /><br />
-
-      <select
-        value={form.priority}
-        onChange={(e) =>
-          setForm({ ...form, priority: e.target.value })
-        }
-      >
-        <option>Low</option>
-        <option>Medium</option>
-        <option>High</option>
-      </select>
-
-      <select
-        value={form.status}
-        onChange={(e) =>
-          setForm({ ...form, status: e.target.value })
-        }
-      >
-        <option>Todo</option>
-        <option>In Progress</option>
-        <option>Done</option>
-      </select>
-
-      <br /><br />
-
-      <button type="submit">Add Task</button>
+      <div style={{ marginTop: "1rem" }}>
+        <button type="submit" className="btn btn-primary" style={{ width: "100%" }}>Add Task</button>
+      </div>
     </form>
   );
 }
