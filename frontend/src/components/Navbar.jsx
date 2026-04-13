@@ -12,6 +12,13 @@ export default function Navbar() {
       </Link>
 
       <div className="nav-links">
+        {user && (
+          <div className="nav-main">
+            <Link to="/" className="nav-link">Dashboard</Link>
+            <Link to="/progress" className="nav-link">Progress</Link>
+          </div>
+        )}
+
         {!user ? (
           <>
             <Link to="/login" className="nav-link">Login</Link>
@@ -19,8 +26,6 @@ export default function Navbar() {
           </>
         ) : (
           <>
-            <Link to="/" className="nav-link">Dashboard</Link>
-            <Link to="/progress" className="nav-link">Progress</Link>
             <span className="user-greeting">Hello, <strong>{user.name}</strong></span>
             <button onClick={logout} className="btn btn-secondary" style={{ padding: "0.5rem 1rem" }}>Logout</button>
           </>
