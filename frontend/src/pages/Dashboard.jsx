@@ -33,44 +33,69 @@ export default function Dashboard() {
   }, [user, search, status, priority]);
 
   const fetchTasks = async () => {
-    const { data } = await API.get(
-      `/tasks?search=${search}&status=${status}&priority=${priority}`
-    );
-    setTasks(data.tasks);
+    try {
+      const { data } = await API.get(
+        `/tasks?search=${search}&status=${status}&priority=${priority}`
+      );
+      setTasks(data.tasks);
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to fetch tasks");
+    }
   };
 
   const fetchStats = async () => {
-    const { data } = await API.get("/tasks/stats");
-    setStats(data);
+    try {
+      const { data } = await API.get("/tasks/stats");
+      setStats(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const addTask = async (taskData) => {
-    await API.post("/tasks", taskData);
-    fetchTasks();
-    fetchStats();
-    setIsAddingTask(false);
-    toast.success("Task Added");
+    try {
+      await API.post("/tasks", taskData);
+      fetchTasks();
+      fetchStats();
+      setIsAddingTask(false);
+      toast.success("Task Added");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to add task");
+    }
   };
 
   const deleteTask = async (id) => {
-    await API.delete(`/tasks/${id}`);
-    fetchTasks();
-    fetchStats();
-    toast.success("Task deleted");
+    try {
+      await API.delete(`/tasks/${id}`);
+      fetchTasks();
+      fetchStats();
+      toast.success("Task deleted");
+    } catch (error) {
+      toast.error("Failed to delete task");
+    }
   };
 
   const saveEdit = async (updatedTask) => {
-    await API.put(`/tasks/${updatedTask._id}`, updatedTask);
-    setEditingTask(null);
-    fetchTasks();
-    fetchStats();
-    toast.success("Task Updated");
+    try {
+      await API.put(`/tasks/${updatedTask._id}`, updatedTask);
+      setEditingTask(null);
+      fetchTasks();
+      fetchStats();
+      toast.success("Task Updated");
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Failed to update task");
+    }
   };
 
   const handleStatusChange = async (id, status) => {
-    await API.put(`/tasks/${id}`, { status });
-    fetchTasks();
-    fetchStats();
+    try {
+      await API.put(`/tasks/${id}`, { status });
+      fetchTasks();
+      fetchStats();
+    } catch (error) {
+      toast.error("Failed to update status");
+      fetchTasks(); // Re-fetch to revert UI state if it fails
+    }
   };
 
   return (
