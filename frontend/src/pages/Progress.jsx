@@ -92,7 +92,7 @@ export default function Progress() {
   };
 
   return (
-    <main className="dashboard" style={{ marginTop: "80px", minHeight: "calc(100vh - 80px)" }}>
+    <main className="dashboard progress-page" style={{ marginTop: "80px", minHeight: "calc(100vh - 80px)" }}>
       <header className="dashboard-header" style={{ flexDirection: "column", alignItems: "flex-start" }}>
         <h1>Progress & Analytics</h1>
         <p style={{ color: "var(--text-muted)", fontSize: "0.9rem", marginTop: "0.25rem" }}>
@@ -141,14 +141,14 @@ export default function Progress() {
         </section>
 
         {/* Completed Section */}
-        <section className="dashboard-sidebar-right" style={{ flex: 1, minWidth: "300px" }}>
+        <section className="dashboard-main" style={{ flex: 1, minWidth: "300px" }}>
           <div style={{
             padding: "0.5rem 1rem",
             background: "var(--done-color)",
             borderRadius: "8px",
             marginBottom: "1rem"
           }}>
-            <h3 style={{ fontSize: "1.2rem", color: "var(--text-main)", margin: 0 }}>Completed</h3>
+            <h3 style={{ fontSize: "1.2rem", color: "var(--text-main)", margin: 0 }}>Completed Task History</h3>
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>

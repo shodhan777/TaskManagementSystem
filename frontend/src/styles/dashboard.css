@@ -7,6 +7,11 @@
   flex-direction: column;
 }
 
+.progress-page {
+  max-width: none;
+  width: 100%;
+}
+
 .dashboard-header {
   display: flex;
   flex-wrap: wrap;
