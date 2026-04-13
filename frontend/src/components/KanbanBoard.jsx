@@ -37,8 +37,8 @@ export default function KanbanBoard({
     <DragDropContext onDragEnd={handleDragEnd}>
       <div style={{
         display: "grid",
-        gridTemplateColumns: `repeat(${colCount}, minmax(300px, 1fr))`,
-        gap: "1.5rem",
+        gridTemplateColumns: `repeat(${colCount}, minmax(280px, 1fr))`,
+        gap: "1rem",
         overflowX: "auto",
         paddingBottom: "1rem"
       }}>

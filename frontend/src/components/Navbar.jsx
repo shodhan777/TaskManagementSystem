@@ -19,6 +19,8 @@ export default function Navbar() {
           </>
         ) : (
           <>
+            <Link to="/" className="nav-link">Dashboard</Link>
+            <Link to="/progress" className="nav-link">Progress</Link>
             <span className="user-greeting">Hello, <strong>{user.name}</strong></span>
             <button onClick={logout} className="btn btn-secondary" style={{ padding: "0.5rem 1rem" }}>Logout</button>
           </>

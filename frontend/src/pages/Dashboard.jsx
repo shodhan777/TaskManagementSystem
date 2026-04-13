@@ -140,6 +140,10 @@ export default function Dashboard() {
           + Add Task
         </button>
       </header>
+      
+      <section style={{ marginBottom: "1.5rem" }}>
+        <StatsCards stats={stats} vertical={false} />
+      </section>
 
       <div className="dashboard-content">
         <section className="dashboard-main" aria-label="Kanban Board">
@@ -151,10 +155,6 @@ export default function Dashboard() {
             onDelete={deleteTask} 
           />
         </section>
-
-        <aside className="dashboard-sidebar-right" aria-label="Task Statistics">
-          <StatsCards stats={stats} vertical={true} />
-        </aside>
       </div>
 
       {isAddingTask && (

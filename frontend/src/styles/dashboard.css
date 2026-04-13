@@ -9,10 +9,12 @@
 
 .dashboard-header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   flex-shrink: 0;
+  gap: 1rem;
 }
 
 .dashboard-header h1 {
@@ -27,16 +29,13 @@
   display: flex;
   gap: 1.5rem;
   flex-grow: 1;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
   margin-bottom: 1rem;
 }
 
 .dashboard-sidebar-right {
-  width: 240px;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
+  display: none;
 }
 
 .dashboard-main {
